@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function clearAllData() {
     // Vacia el localStorage
-    localStorage.removeItem("assignments");
+    localStorage.clear();
 
     // Reinicia el historial de asignaciones en la memoria del script
     history = { timekeeper: [], notekeeper: [], timetracker: [] };
