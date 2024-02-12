@@ -1,13 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const roles = ["timekeeper", "notekeeper", "timetracker"];
-  let users = JSON.parse(localStorage.getItem("users")) || [
-    "Ana",
-    "Beto",
-    "Carlos",
-    "Diana",
-    "Elena",
-    "Fernando",
-  ]; // Usuarios predeterminados o cargados
+  let users = JSON.parse(localStorage.getItem("users")) || getDefaultUsers(); // Usuarios predeterminados o cargados
+
   let history = JSON.parse(localStorage.getItem("assignments")) || {
     timekeeper: [],
     notekeeper: [],
@@ -24,8 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Reinicia el historial de asignaciones en la memoria del script
     history = { timekeeper: [], notekeeper: [], timetracker: [] };
-
+    users = getDefaultUsers();
     // Actualiza la UI para reflejar el estado vacío
+    updateUserList();
     updateUI();
   }
 
@@ -42,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (Array.isArray(newUserList)) {
           users = newUserList;
           localStorage.setItem("users", JSON.stringify(users));
+          updateUserList();
           alert("Usuarios cargados correctamente.");
         } else {
           alert("El archivo no tiene el formato correcto.");
@@ -135,5 +131,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function updateUserList() {
+    const userList = document.getElementById("userList");
+    userList.innerHTML = "";
+    users.forEach((user) => {
+      const listItem = document.createElement("li");
+      listItem.textContent = user;
+      userList.appendChild(listItem);
+    });
+  }
+
+  function getDefaultUsers() {
+    return ["Ana", "Beto", "Carlos", "Diana", "Elena", "Fernando"];
+  }
+
   updateUI();
+  updateUserList();
 });
