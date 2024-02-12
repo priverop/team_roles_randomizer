@@ -36,7 +36,7 @@
           <th>Timetrackers</th>
         </tr>
       </thead>
-      <tbody id="roleTableBody">
+      <tbody>
         <tr>
           <td>
             <ul id="timekeeperList"></ul>
@@ -50,17 +50,35 @@
         </tr>
       </tbody>
     </table>
-    <div>
-      <button id="generate">Generar</button>
-      <button id="clearAll">Eliminar Todo</button>
-    </div>
-    <div>
-      <input type="file" id="fileInput" accept=".json" />
-      <button id="loadUsers">Cargar Usuarios</button>
-    </div>
-    <div>
-      <input type="file" id="progressFileInput" accept=".json" />
-      <button id="loadProgress">Cargar Progreso</button>
-    </div>
+    <div><button id="generate">Generar</button></div>
+    <h2>Funciones extra</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Usuarios actuales</th>
+          <th>Eliminar datos</th>
+          <th>Cargar Usuarios</th>
+          <th>Cargar progreso</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <ul id="userList"></ul>
+          </td>
+          <td>
+            <button id="clearAll">Eliminar Todo</button>
+          </td>
+          <td>
+            <input type="file" id="fileInput" accept=".json" />
+            <button id="loadUsers">Cargar Usuarios</button>
+          </td>
+          <td>
+            <input type="file" id="progressFileInput" accept=".json" />
+            <button id="loadProgress">Cargar Progreso</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </body>
 </html>
