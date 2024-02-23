@@ -119,12 +119,8 @@ document.addEventListener("DOMContentLoaded", () => {
     lastGenerationSelectedUsers = selectedUsersForThisRound;
 
     saveAssignmentsToLocalStorage();
-    alert("3");
-    alert("2");
-    alert("1");
-    alert("...");
-    alert("ready??");
-    updateUI();
+    showOverlay();
+    startCountdown();
   }
 
   function updateUI() {
@@ -132,9 +128,18 @@ document.addEventListener("DOMContentLoaded", () => {
       const listElement = document.getElementById(`${role}List`);
       listElement.innerHTML = ""; // Limpiar la lista actual
 
-      history[role].forEach((user) => {
+      history[role].forEach((user, index, array) => {
         const listItem = document.createElement("li");
-        listItem.textContent = user;
+
+        // Check if it's the last user in the array
+        if (index === array.length - 1) {
+          const boldElement = document.createElement("b");
+          boldElement.textContent = user;
+          listItem.appendChild(boldElement);
+        } else {
+          listItem.textContent = user;
+        }
+
         listElement.appendChild(listItem);
       });
     });
@@ -148,6 +153,33 @@ document.addEventListener("DOMContentLoaded", () => {
       listItem.textContent = user;
       userList.appendChild(listItem);
     });
+  }
+
+  function showOverlay() {
+    const overlay = document.getElementById("overlay");
+    overlay.style.display = "flex";
+  }
+
+  function startCountdown() {
+    let countdown = 3;
+    const countdownElement = document.getElementById("countdown");
+
+    const intervalId = setInterval(() => {
+      if (countdown === 1) {
+        hideOverlay(); // Hide the overlay when countdown reaches 0
+        clearInterval(intervalId); // Stop the countdown
+        countdown = 3; // Reset the countdown for the next time
+      } else {
+        countdown--;
+      }
+      countdownElement.textContent = countdown;
+    }, 1000);
+  }
+
+  function hideOverlay() {
+    const overlay = document.getElementById("overlay");
+    overlay.style.display = "none";
+    updateUI();
   }
 
   function getDefaultUsers() {
