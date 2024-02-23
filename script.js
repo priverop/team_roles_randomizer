@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
           users = newUserList;
           localStorage.setItem("users", JSON.stringify(users));
           updateUserList();
-          alert("Usuarios cargados correctamente.");
         } else {
           alert("El archivo no tiene el formato correcto.");
         }
@@ -65,7 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
           history = newProgress; // Asume que el JSON está en el formato correcto
           localStorage.setItem("assignments", JSON.stringify(history));
           updateUI();
-          alert("Progreso cargado correctamente.");
         } else {
           alert("El archivo no tiene el formato correcto.");
         }
@@ -121,6 +119,11 @@ document.addEventListener("DOMContentLoaded", () => {
     lastGenerationSelectedUsers = selectedUsersForThisRound;
 
     saveAssignmentsToLocalStorage();
+    alert("3");
+    alert("2");
+    alert("1");
+    alert("...");
+    alert("ready??");
     updateUI();
   }
 
