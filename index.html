@@ -37,7 +37,18 @@
         font-size: 24px;
         z-index: 1000;
       }
+      #content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      #countdown {
+        text-align: center;
+        font-size: 3rem;
+      }
     </style>
+    <link rel="stylesheet" href="drum.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
@@ -95,8 +106,29 @@
       </tbody>
     </table>
     <div id="overlay">
-      <div id="animation">Your Animation Here</div>
-      <div id="countdown">3</div>
+      <div class="content">
+        <div id="animation">
+          <div class="drum">
+            <div class="side">
+              <div class="side__bottom"></div>
+              <div class="side__top"></div>
+              <div class="pattern pattern-1"></div>
+              <div class="pattern pattern-2"></div>
+              <div class="pattern pattern-3"></div>
+              <div class="pattern pattern-4"></div>
+              <div class="pattern pattern-5"></div>
+              <div class="pattern pattern-6"></div>
+            </div>
+            <div class="top"></div>
+
+            <div class="drum-stick drum-stick--left"></div>
+            <div class="drum-stick-shadow drum-stick-shadow--left"></div>
+            <div class="drum-stick drum-stick--right"></div>
+            <div class="drum-stick-shadow drum-stick-shadow--right"></div>
+          </div>
+        </div>
+        <div id="countdown">3</div>
+      </div>
     </div>
   </body>
 </html>

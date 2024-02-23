@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     if (usersAvailableForRoles.length < roles.length) {
-      console.log(
+      alert(
         "No hay suficientes usuarios disponibles para asignar a nuevos roles."
       );
       return;
