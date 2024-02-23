@@ -1,12 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const roles = ["timekeeper", "notekeeper", "timetracker"];
+  const roles = ["timekeeper", "notekeeper", "facilitator"];
   let users = JSON.parse(localStorage.getItem("users")) || getDefaultUsers(); // Usuarios predeterminados o cargados
 
   let history = JSON.parse(localStorage.getItem("assignments")) || {
     timekeeper: [],
     notekeeper: [],
-    timetracker: [],
+    facilitator: [],
   };
+
+  let lastGenerationSelectedUsers = [];
 
   // Clean everything
   const clearButton = document.getElementById("clearAll");
@@ -17,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.clear();
 
     // Reinicia el historial de asignaciones en la memoria del script
-    history = { timekeeper: [], notekeeper: [], timetracker: [] };
+    history = { timekeeper: [], notekeeper: [], facilitator: [] };
     users = getDefaultUsers();
     // Actualiza la UI para reflejar el estado vacío
     updateUserList();
@@ -85,9 +87,10 @@ document.addEventListener("DOMContentLoaded", () => {
   function generateRoles() {
     let usersAvailableForRoles = users.filter(
       (user) =>
-        !history.timekeeper.includes(user) ||
-        !history.notekeeper.includes(user) ||
-        !history.timetracker.includes(user)
+        (!history.timekeeper.includes(user) ||
+          !history.notekeeper.includes(user) ||
+          !history.facilitator.includes(user)) &&
+        !lastGenerationSelectedUsers.includes(user)
     );
 
     if (usersAvailableForRoles.length < roles.length) {
@@ -113,6 +116,9 @@ document.addEventListener("DOMContentLoaded", () => {
         selectedUsersForThisRound.push(selectedUser);
       }
     });
+
+    // Save the current generation's selected users for future reference
+    lastGenerationSelectedUsers = selectedUsersForThisRound;
 
     saveAssignmentsToLocalStorage();
     updateUI();
